@@ -44,19 +44,38 @@ fun main() {
 //        }
 //    print("Total Price After Discount : ")
 //    print(totalPriceAfterDiscount)
-    
-    print("Total Unit : ")
-    var unit = Scanner(System.`in`).nextDouble()
-    var bill: Double =
-        if(unit >= 0 && unit <= 100){
-            unit * 1
-        }else if (unit > 100 && unit <= 200){
-            (100 * 1.0) + ((unit - 100) * 1.5)
-        }else if( unit > 200){
-            (100 * 1) + (100 * 1.5) + ((unit - 200) * 2)
-        }else{
-            0.0
+
+//    print("Total Unit : ")
+//    var unit = Scanner(System.`in`).nextDouble()
+//    var bill: Double =
+//        if(unit >= 0 && unit <= 100){
+//            unit * 1
+//        }else if (unit > 100 && unit <= 200){
+//            (100 * 1.0) + ((unit - 100) * 1.5)
+//        }else if( unit > 200){
+//            (100 * 1) + (100 * 1.5) + ((unit - 200) * 2)
+//        }else{
+//            0.0
+//        }
+//    print("Total Bill : ")
+//    print(bill)
+
+    var numList = listOf(5, 3, 7, 0)
+    var index = 0
+
+    while (index < numList.size){
+        val num = numList[index]
+
+        if (num == 0){
+            println("You hit the 0")
+            break
         }
-    print("Total Bill : ")
-    print(bill)
+        if (num == 7){
+            println("Congrats you hit the luck number")
+            break
+        }else{
+            println("Not the number : " + num)
+        }
+        index++
+    }
 }
