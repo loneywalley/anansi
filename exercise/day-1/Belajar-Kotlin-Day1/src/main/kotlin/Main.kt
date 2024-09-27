@@ -17,14 +17,31 @@ fun main() {
 //        in 0..60 -> print("F")
 //        !in 0..100 -> print("Invalid")
 //    }
-    print("Salary : ")
-    var salary = Scanner(System.`in`).nextDouble()
-    print("Years Of Service : ")
-    var yearsOfService = Scanner(System.`in`).nextInt()
-    var bonus: Double = when(yearsOfService){
-        in 5..10 -> salary * 0.2
-        in 2..5 -> salary * 0.1
-        else -> 0.0
-    }
-    println("Bonus : " +bonus)
+//    print("Salary : ")
+//    var salary = Scanner(System.`in`).nextDouble()
+//    print("Years Of Service : ")
+//    var yearsOfService = Scanner(System.`in`).nextInt()
+//    var bonus: Double = when(yearsOfService){
+//        in 5..10 -> salary * 0.2
+//        in 2..5 -> salary * 0.1
+//        else -> 0.0
+//    }
+//    println("Bonus : " +bonus)
+
+    print("Total Price : ")
+    var totalPrice = Scanner(System.`in`).nextDouble()
+    var totalPriceAfterDiscount: Double =
+        if (totalPrice > 200){
+            totalPrice - (totalPrice * 0.3)
+        }else if (totalPrice > 100 && totalPrice <= 200){
+            totalPrice - (totalPrice * 0.2)
+        }else if (totalPrice > 50 && totalPrice <= 100){
+            totalPrice - (totalPrice * 0.1)
+        }else if (totalPrice >= 0 && totalPrice <= 50) {
+            totalPrice
+        }else{
+            0.0
+        }
+    print("Total Price After Discount : ")
+    print(totalPriceAfterDiscount)
 }
