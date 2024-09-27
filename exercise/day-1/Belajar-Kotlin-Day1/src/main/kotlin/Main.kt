@@ -44,6 +44,7 @@ fun main() {
 //        }
 //    print("Total Price After Discount : ")
 //    print(totalPriceAfterDiscount)
+    
     print("Total Unit : ")
     var unit = Scanner(System.`in`).nextDouble()
     var bill: Double =
