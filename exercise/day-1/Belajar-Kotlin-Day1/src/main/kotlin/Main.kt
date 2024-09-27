@@ -60,22 +60,33 @@ fun main() {
 //    print("Total Bill : ")
 //    print(bill)
 
-    var numList = listOf(5, 3, 7, 0)
-    var index = 0
+//    var numList = listOf(5, 3, 7, 0)
+//    var index = 0
+//
+//    while (index < numList.size){
+//        val num = numList[index]
+//
+//        if (num == 0){
+//            println("You hit the 0")
+//            break
+//        }
+//        if (num == 7){
+//            println("Congrats you hit the luck number")
+//            break
+//        }else{
+//            println("Not the number : " + num)
+//        }
+//        index++
+//    }
 
-    while (index < numList.size){
-        val num = numList[index]
-
-        if (num == 0){
-            println("You hit the 0")
+    var fuel: Int = 0
+    while (fuel <= 50){
+        println("Fuel : " + fuel)
+        fuel += 5
+        if (fuel > 40){
+            println("Fuel : " + fuel)
+            println("Fuel has reached 40 liters")
             break
         }
-        if (num == 7){
-            println("Congrats you hit the luck number")
-            break
-        }else{
-            println("Not the number : " + num)
-        }
-        index++
     }
 }
