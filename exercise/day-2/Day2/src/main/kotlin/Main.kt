@@ -2,80 +2,77 @@ import java.time.LocalDate
 import java.util.Scanner
 
 fun main() {
-    var ticketManager = TicketManager()
+    val projectManager = ProjectManager()
+
     while (true) {
         println("Menu :")
-        println("1. Registration")
-        println("2. Create Ticket")
-        println("3. Assign Ticket")
-        println("4. Update Ticket")
-        println("5. Set Due Date")
-        println("6. View Ticket")
-        println("7. Search Ticket")
-        println("8. Exit")
+        println("1. Add Freelancer")
+        println("2. Create Project")
+        println("3. Assign Task")
+        println("4. Log Hours Worked")
+        println("5. View Project Details")
+        println("6. Exit")
         print("Choose Menu : ")
-        var input = Scanner(System.`in`).nextInt()
-        when(input){
-            1 -> {
-                println("Enter User Name: ")
-                var name = readLine()!!
-                println("Enter User Role (User/Admin): ")
-                var role = readLine()!!
-                ticketManager.addUser(name, role.lowercase())
-                println("User Registered Successfully!")
-            }
-            2 -> {
-                println("Enter Ticket Description: ")
-                var description = readLine()!!
-                println("Enter Ticket Priority (Low/Medium/High): ")
-                var priority = readLine()!!
-                var ticket = ticketManager.createTicket(description, priority)
-                println("Ticket Created Successfully! Ticket ID: ${ticket.id}")
-            }
-            3 -> {
-                println("Input Ticket ID : ")
-                var ticketId = Scanner(System.`in`).nextInt()
-                println("Input User ID : ")
-                var userId = Scanner(System.`in`).nextInt()
-                ticketManager.assignUser(ticketId, userId)
-                println("User with id number ${userId}, has been assigned to ticket ${ticketId}")
-            }
-            4 -> {
-                println("Enter Ticket ID: ")
-                var ticketId = readLine()!!
-                println("Enter New Status (Open/In Progress/Closed): ")
-                var status = readLine()!!
-                ticketManager.updateTicketStatus(ticketId.toInt(), status)
-                println("Ticket Status Updated Successfully!")
-            }
-            5 -> {
-                println("Enter Ticket ID: ")
-                var ticketId = readLine()!!
-                println("Enter Due Date (YYYY-MM-DD): ")
-                var dueDate = readLine()!!
-                ticketManager.setDueDate(ticketId.toInt(), dueDate)
-                println("Due Date Set Successfully!")
-            }
-            6 -> {
-                ticketManager.viewTickets()
-            }
-            7 -> {
-                println("Enter Ticket ID: ")
-                var ticketId = readLine()!!
-                var ticket = ticketManager.searchTicketById(ticketId.toInt())
-                if (ticket != null) {
-                    println("Ticket Found!")
-                    println(ticket)
-                } else {
-                    println("Ticket Not Found!")
+        try{
+            var input = Scanner(System.`in`).nextInt()
+            when(input){
+                1 -> {
+                    println("Enter Freelancer Name: ")
+                    var name = readLine()!!
+                    println("Enter Freelancer Hourly Rate: ")
+                    var hourlyRate = readLine()!!
+                    projectManager.addFreelancer(name, hourlyRate.toDouble())
+                    println("Freelancer Added Successfully!")
+                }
+                2 -> {
+                    println("Enter Project Name: ")
+                    var name = readLine()!!
+                    println("Enter Client Name: ")
+                    var client = readLine()!!
+                    println("Enter Project Deadline (YYYY-MM-DD): ")
+                    var deadline = readLine()!!
+                    projectManager.createProject(name, client, LocalDate.parse(deadline))
+                    println("Project Created Successfully!")
+                }
+                3 -> {
+                    println("Enter Project ID: ")
+                    var projectId = readLine()!!
+                    println("Enter Freelancer ID: ")
+                    var freelancerId = readLine()!!
+                    println("Enter Task Description: ")
+                    var description = readLine()!!
+                    println("Enter Estimated Hours: ")
+                    var estimatedHours = readLine()!!
+                    projectManager.assignTask(projectId.toInt(), freelancerId.toInt(), description, estimatedHours.toInt())
+                    println("Task Assigned Successfully!")
+                }
+                4 -> {
+                    println("Enter Task ID: ")
+                    var taskId = readLine()!!
+                    println("Enter Hours Worked: ")
+                    var hoursWorked = readLine()!!
+                    projectManager.logHoursWorked(taskId.toInt(), hoursWorked.toInt())
+                    println("Hours Worked Logged Successfully!")
+                }
+                5 -> {
+                    println("Enter Project ID: ")
+                    var projectId = readLine()!!
+                    projectManager.viewProjectDetails(projectId.toInt())
+                }
+                6 -> {
+                    break
+                }
+                else -> {
+                    println("Please Input 1 - 6")
                 }
             }
-            8 -> {
-                break
-            }
-            else -> {
-                println("Invalid Choice. Please choose a valid option.")
+        }catch (e: Exception){
+            if(e.message == null){
+                println("Invalid Choice. Please choose a valid option")
+            }else{
+                println(e.message)
             }
         }
+
     }
 }
