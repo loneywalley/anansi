@@ -79,14 +79,53 @@ fun main() {
 //        index++
 //    }
 
-    var fuel: Int = 0
-    while (fuel <= 50){
-        println("Fuel : " + fuel)
-        fuel += 5
-        if (fuel > 40){
-            println("Fuel : " + fuel)
-            println("Fuel has reached 40 liters")
-            break
+//    var fuel: Int = 0
+//    while (fuel <= 50){
+//        println("Fuel : " + fuel)
+//        fuel += 5
+//        if (fuel > 40){
+//            println("Fuel : " + fuel)
+//            println("Fuel has reached 40 liters")
+//            break
+//        }
+//    }
+
+//    fun reserveSeat(name: String, seatNumber: Int) {
+//        val availableSeats = mutableListOf(1, 2, 3, 4, 5)
+//
+//        if (availableSeats.contains(seatNumber)) {
+//            availableSeats.set(1,0)  // Mark the seat as reserved by setting it to 0
+//            println("$name reserved seat $seatNumber.")
+//        } else {
+//            println("Seat $seatNumber is already reserved.")
+//        }
+//    }
+//
+//    fun main() {
+//        reserveSeat("John", 2)
+//        reserveSeat("Sarah", 2)
+//    }
+
+    // Create a set to store reserved seats
+    val reservedSeats = mutableSetOf<Int>()
+
+// Create a list of available seats
+    val availableSeats = arrayOf(1, 2, 3, 4, 5)
+
+    fun reserveSeat(name: String, seatNumber: Int) {
+        // Check if the seat is available
+        if (availableSeats.contains(seatNumber) && !reservedSeats.contains(seatNumber)) {
+            // Mark the seat as reserved
+            reservedSeats.add(seatNumber)
+            println("$name reserved seat $seatNumber.")
+        } else {
+            println("Seat $seatNumber is already reserved.")
         }
     }
+
+//    fun main() {
+        reserveSeat("John", 2)
+        reserveSeat("Sarah", 3)
+//    }
+
 }
