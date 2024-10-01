@@ -55,6 +55,9 @@ class ProjectManager {
         if (task != null) {
             // Check if task was completed
             if (task.status != "Completed") {
+                if (hoursWorked < 0) {
+                    throw Exception("Actual hours must be positive.")
+                }
                 task.actualHours += hoursWorked
                 if (task.actualHours > task.estimatedHours * 1.5) {
                     throw Exception("Warning: Actual hours exceed estimated hours by more than 50%")
@@ -104,12 +107,11 @@ class ProjectManager {
             println("Tasks:")
             project.tasks.forEach {
                 println("ID : ${it.id}")
-                println("Freelancer : ${it.freelancer.name}")
+                println("Freelancer Name : ${it.freelancer.name}")
                 println("Status : ${it.status}")
                 println("Description : ${it.description}")
                 println("Actual Hours : ${it.actualHours}")
                 println("Estimate Hours : ${it.estimatedHours}") }
-            calculateProjectBudget(projectId)
             println("Total Budget: ${project.totalBudget}")
         }
     }
